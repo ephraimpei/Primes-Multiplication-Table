@@ -47,15 +47,22 @@ class MultiplicationTable
 
   private
 
-  # Time complexity = 
+  # Time complexity = O(N * (N - 1)) = O(N^2 - N) = O(N^2)
   # Space complexity = O(N^2)
   def fill_grid(dimensions)
     grid = Array.new(dimensions) { Array.new(dimensions, nil) }
 
-    # store equivalent expressions.
+    # store known expressions in a hash
     # ie: if row = 2, col = 3, prod = 2 * 3 = 6, store [3, 2] = 6
-    #     when row = 3, col = 2, can retrieve value from equivalents hash
-    equivalents = {}
+    #     when row = 3, col = 2, can retrieve value from known hash
+    known = {}
+
+    # initialize the hash with diagonal expressions
+    # ie: 2 * 2, 3 * 3, 4 * 4, etc.
+    0.upto(dimensions - 1) do |d|
+      prime = Prime.get_cached_prime(d + 1)
+      known[[d, d]] = prime * prime
+    end
 
     0.upto(dimensions - 1) do |row|
       x_prime = Prime.get_cached_prime(row + 1)
@@ -64,11 +71,11 @@ class MultiplicationTable
         y_prime = Prime.get_cached_prime(col + 1)
 
         # store equivalent of [row, col] which is [col, row]
-        equivalents[[col, row]] = x_prime * y_prime if col > row
+        known[[col, row]] = x_prime * y_prime if col > row
 
-        # retrieve value from equivalents hash if it exists, otherwise calculate
-        grid[row][col] = equivalents[[row, col]] ?
-          equivalents[[row, col]] :
+        # retrieve value from known hash if it exists, otherwise calculate
+        grid[row][col] = known[[row, col]] ?
+          known[[row, col]] :
           x_prime * y_prime
       end
     end

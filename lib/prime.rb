@@ -19,7 +19,6 @@ class Prime
   end
 
   # Time complexity = O(m * sqrt(m)) where m is the nth prime number
-  # ex: n = 10, m = 29 since numbers 2 - 29 need to be checked with Prime::is_prime?
   # Space complexity = O(n)
   def self.calc_nth_prime(n)
     raise PrimeException.new("Can not calculate prime number.") if n < 1

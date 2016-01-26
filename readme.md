@@ -64,7 +64,7 @@ Benchmarking
 
   ![alt text][is_prime_benchmark_tests]
 
-  [is_prime_benchmark_tests]: https://www.github.com/ephraimpei/unite-us-coding-challenge/images/is_prime_benchmark_tests.png
+  [is_prime_benchmark_tests]: https://github.com/ephraimpei/unite-us-coding-challenge/blob/master/images/is_prime_benchmark_tests.png?raw=true
 
 ### MultiplicationTable
 
@@ -74,9 +74,15 @@ Design
 
 Performance
 
-  + **Space complexity is O(N^2)** because the `@grid` instance variable will grow in both x and y dimensions as the input N gets larger.  **Time complexity is **
+  + **Space complexity is O(N^2)** because the `@grid` instance variable will grow in both x and y dimensions as the input N gets larger.  **Time complexity to fill `@grid` is also O(N^2).** (See reasoning below).
+
+  + Overall, the total time to instantiate a `MultiplicationTable` object in the worst case (Prime cache is empty, calculating Primes for the first time) is **O(N^2) + O(m * sqrt(m))** where N is the number of primes and m is the Nth prime. However, at scale O(N^2) will overshadow O(m * sqrt(m)) therefore the time complexity is just **O(N^2)**.
 
 Reasoning
+
+  + Without the known expressions optimization, the `MultiplicationTable#fill_grid` is simply a double nested loop which has a time complexity of O(N^2).  All double nested loops share this same time complexity.  I knew this was no good so I attempted to look for a pattern and noticed that known expressions can be stored and retrieved once the algorithm comes to those expressions.  This eliminates almost half of the expressions that need to be searched and evaluated.  However, as mentioned earlier the time complexity of the algorithm is still growing exponentially.
+
+  + Despite attempts to optimize the `MultiplicationTable#fill_grid` method, the algorithm still averages out to O(N^2) because the optimization is overshadowed by the exponential at scale. The optimization brings the time complexity to O(N * (N-1)) which factors out to become O(N^2 - N) which becomes O(N^2) at scale.
 
 Benchmarking
 
@@ -88,6 +94,6 @@ Benchmarking
 
   ![alt text][mult_table_benchmark_tests]
 
-  [mult_table_benchmark_tests]: https://www.github.com/ephraimpei/unite-us-coding-challenge/images/mult_table_benchmark_tests.png
+  [mult_table_benchmark_tests]: https://github.com/ephraimpei/unite-us-coding-challenge/blob/master/images/mult_table_benchmark_tests.png?raw=true
 
 ## Thanks and I hope you enjoyed my program and documentation!

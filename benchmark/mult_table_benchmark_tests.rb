@@ -3,7 +3,7 @@ require "benchmark"
 
 test_cases = [100, 1000, 10000]
 
-puts "MultiplicationTable#initialize (#fill_grid) tests #1"
+puts "MultiplicationTable#initialize (#fill_grid) test #1"
 puts "Prime cache is cleared and Prime::calc_nth_prime is run before each test case"
 puts "to ensure we are measuring MultiplicationTable#fill_grid alone"
 puts "\n"
@@ -19,7 +19,9 @@ Benchmark.bm(12) do |x|
   end
 end
 
-puts "MultiplicationTable#initialize (#fill_grid) tests #2"
+puts "\n"
+
+puts "MultiplicationTable#initialize (#fill_grid) test #2"
 puts "Prime cache is cleared before running each test case"
 puts "to ensure we are measuring the total time for"
 puts "MultiplicationTable#fill_grid + Prime::calc_nth_prime"

@@ -98,8 +98,6 @@ describe Prime do
 
         expect(Prime.cached_primes.keys.length).to equal(150)
       end
-
-      it "doesn't re-cache already known primes"
     end
   end
 
