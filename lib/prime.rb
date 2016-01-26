@@ -16,6 +16,9 @@ class Prime
     @@cached_primes = {}
   end
 
+  # Time complexity = O(m * sqrt(m)) where m is the nth prime number
+  # ex: n = 10, m = 29 since numbers 2 - 29 need to be checked with ::is_prime?
+  # Space complexity = O(n)
   def self.calc_nth_prime(n)
     raise PrimeException.new("Can not calculate prime number.") if n < 1
 
@@ -42,6 +45,8 @@ class Prime
     @@cached_primes[n]
   end
 
+  # Time complexity = O(sqrt(n))
+  # Space complexity = O(1)
   def self.is_prime?(n)
     # n == 2 check needed to allow even number check to work
     return true if n == 2
