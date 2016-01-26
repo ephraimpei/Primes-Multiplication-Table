@@ -4,8 +4,7 @@ require "benchmark"
 is_prime_test_cases = [1000001, 10000001, 100000001, 1000000001]
 calc_nth_prime_test_cases = [1000, 10000, 100000, 1000000, 10000000]
 
-
-puts "Prime.is_prime? tests"
+puts "Prime::is_prime? tests"
 
 # These tests cranked out remarkably faster than I thought
 # Wasn't able to get a benchmark that proves the O(sqrt(m)) time complexity
@@ -19,7 +18,7 @@ end
 
 puts "\n"
 
-puts "Prime.calc_nth_prime tests"
+puts "Prime::calc_nth_prime tests"
 
 # These tests absolutely confirm that the big O for this task is O(m * sqrt(m))
 # Each test increased the total CPU time by a factor of 31.62

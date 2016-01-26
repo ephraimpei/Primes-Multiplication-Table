@@ -6,7 +6,7 @@ This program will display a multiplication table of N prime numbers to the conso
 
 ![alt text][sample_output]
 
-[sample_output]: https://www.github.com/ephraimpei/unite-us-coding-challenge/images/sample_output.png
+[sample_output]: https://github.com/ephraimpei/unite-us-coding-challenge/blob/master/images/sample_output.png?raw=true
 
 ## Getting Started
 
@@ -20,7 +20,9 @@ If you want to determine N yourself, just supply a numerical argument after the 
 
 ## Design
 
-I immediately knew that I would need to create classes `Prime` and `MultiplicationTable` to abstract away these two objects.  I also knew that the `Prime` class wouldn't need to be instantiated because storing `Prime` objects wasn't necessary. Therefore, the class only contains factory methods.  
+I immediately knew that I would need to create classes `Prime` and `MultiplicationTable` to abstract away these two objects.  I also knew that the `Prime` class wouldn't need to be instantiated because storing `Prime` objects wasn't necessary. Therefore, the class only contains factory methods one of which allows you to calculate the Nth prime number.
+
+The `MultiplicationTable` class is used to represent the multiplication table.  When this class is instantiated, it will invoke `Prime.calc_nth_prime(N)` where N is the argument provided (N is defaulted to 10).  Instances of the `MultiplicationTable` class will hold values of the multiplication table and a `MultiplicationTable#render` method will be available to STDOUT the table to the console.
 
 ## Gems
 * Byebug - preferred debugger
@@ -47,14 +49,17 @@ Reasoning
 
   + `Prime.calc_nth_prime(N)` and the embedded `Prime.is_prime?(m)` check brings our overall time complexity to O(m * sqrt(m)).
 
+Benchmarking
+
   + To see notes about my benchmarking tests, please see the files within the `benchmark` folder.  To run the tests type in the following command at the project root:
+
         $ ruby benchmark/prime_benchmark_tests.rb
 
   + Here were my results of the benchmark tests:
 
   ![alt text][is_prime_benchmark_tests]
 
-  [is_prime_benchmark_tests]: https://www.github.com/ephraimpei/unite-us-coding-challenge/images/sample_output.png
+  [is_prime_benchmark_tests]: https://www.github.com/ephraimpei/unite-us-coding-challenge/images/is_prime_benchmark_tests.png
 
 ### MultiplicationTable
 
@@ -63,3 +68,15 @@ Design
 Performance
 
 Reasoning
+
+Benchmarking
+
+  + To see notes about my benchmarking tests, please see the files within the `benchmark` folder.  To run the tests type in the following command at the project root:
+
+        $ ruby benchmark/mult_table_benchmark_tests.rb
+
+  + Here were my results of the benchmark tests:
+
+  ![alt text][mult_table_benchmark_tests]
+
+  [mult_table_benchmark_tests]: https://www.github.com/ephraimpei/unite-us-coding-challenge/images/mult_table_benchmark_tests.png

@@ -1,4 +1,4 @@
-require_relative "../../lib/prime"
+require_relative "../lib/prime"
 
 describe Prime do
   describe "::is_prime" do
