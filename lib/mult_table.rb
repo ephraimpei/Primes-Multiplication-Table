@@ -14,21 +14,32 @@ class MultiplicationTable
 
   def render
     header_row = build_first_col_el(" ") +
-      (1..@dimensions).map{|n| build_display_el(n) }
-        .join.colorize(:red) + "\n"
+      (1..@dimensions).map{ |n| build_display_el(Prime.get_cached_prime(n)) }
+        .join + "\n"
 
     border_row = "-" * header_row.length + "\n"
 
+    # initialize output string
     output = header_row + border_row
 
     (1..@dimensions).each do |row|
       output += build_first_col_el(Prime.get_cached_prime(row))
 
-      color = row.odd? ? :blue : :light_blue
+      color = row.odd? ? :blue : :red
 
+      # build and append display elements to output string
       output += ((1..@dimensions).map do |col|
-        build_display_el(@grid[row - 1][col - 1])
-      end).join.colorize(color) + "\n"
+        # fun with colors!
+        if row == col
+          color = :yellow
+        elsif row.odd?
+          color = :blue
+        else
+          color = :red
+        end
+
+        build_display_el(@grid[row - 1][col - 1]).colorize(color)
+      end).join + "\n"
     end
 
     print output
@@ -74,10 +85,12 @@ class MultiplicationTable
   end
 
   def build_display_el(n)
+    # right justify output to the max product's number of digits
     " #{ n.to_s.rjust(max_product_digits, " ") } "
   end
 
   def build_first_col_el(n)
-    " #{ n.to_s.rjust(max_prime_digits, " ").colorize(:red) } |"
+    # right justify output to the max prime number's number of digits
+    " #{ n.to_s.rjust(max_prime_digits, " ") } |"
   end
 end

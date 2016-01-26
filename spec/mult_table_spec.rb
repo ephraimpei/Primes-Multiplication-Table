@@ -51,5 +51,3 @@ describe MultiplicationTable do
   end
 
 end
-
-# helper methods

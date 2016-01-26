@@ -4,6 +4,10 @@
 
 This program will display a multiplication table of N prime numbers to the console.
 
+![alt text][sample_output]
+
+[sample_output]: https://www.github.com/ephraimpei/unite-us-coding-challenge/images/sample_output.png
+
 ## Getting Started
 
 CD into the project directory and run the following command:
@@ -20,8 +24,8 @@ I immediately knew that I would need to create classes `Prime` and `Multiplicati
 
 ## Gems
 * Byebug - preferred debugger
-* Rspec - write test scripts
-* Colorize - beautify the console output
+* RSpec - write test scripts
+* Colorize - beautify the boring console output
 
 ## Classes
 
@@ -45,6 +49,12 @@ Reasoning
 
   + To see notes about my benchmarking tests, please see the files within the `benchmark` folder.  To run the tests type in the following command at the project root:
         $ ruby benchmark/prime_benchmark_tests.rb
+
+  + Here were my results of the benchmark tests:
+
+  ![alt text][is_prime_benchmark_tests]
+
+  [is_prime_benchmark_tests]: https://www.github.com/ephraimpei/unite-us-coding-challenge/images/sample_output.png
 
 ### MultiplicationTable
 
