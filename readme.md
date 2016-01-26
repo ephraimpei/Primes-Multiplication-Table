@@ -24,6 +24,8 @@ I immediately knew that I would need to create classes `Prime` and `Multiplicati
 
 The `MultiplicationTable` class is used to represent the multiplication table.  When this class is instantiated, it will invoke `Prime::calc_nth_prime(N)` where N is the argument provided (N is defaulted to 10).  Instances of the `MultiplicationTable` class will hold values of the multiplication table and a `MultiplicationTable#render` method will be available to STDOUT the table to the console.
 
+I took the BDD/TDD approach and wrote out the tests before coding the classes.  This allowed me to fully understand what I was building and what functionalities needed to be implemented upfront.  These tests also allowed me to perform regression tests as I was changing the code to make sure nothing got broken.
+
 Lastly, I built the run_program script so the program can be run from the command line.  It has some basic error handling to make sure the supplied input is valid otherwise an exception is raised.
 
 ## Gems
