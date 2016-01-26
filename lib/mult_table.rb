@@ -47,7 +47,7 @@ class MultiplicationTable
 
   private
 
-  # Time complexity =
+  # Time complexity = 
   # Space complexity = O(N^2)
   def fill_grid(dimensions)
     grid = Array.new(dimensions) { Array.new(dimensions, nil) }

@@ -18,13 +18,14 @@ If you want to determine N yourself, just supply a numerical argument after the 
 
     $ ./run_program 20
 
-## Design
+## Program Design
 
 I immediately knew that I would need to create classes `Prime` and `MultiplicationTable` to abstract away these two objects.  I also knew that the `Prime` class wouldn't need to be instantiated because storing `Prime` objects wasn't necessary. Therefore, the class only contains factory methods one of which allows you to calculate the Nth prime number.
 
-The `MultiplicationTable` class is used to represent the multiplication table.  When this class is instantiated, it will invoke `Prime.calc_nth_prime(N)` where N is the argument provided (N is defaulted to 10).  Instances of the `MultiplicationTable` class will hold values of the multiplication table and a `MultiplicationTable#render` method will be available to STDOUT the table to the console.
+The `MultiplicationTable` class is used to represent the multiplication table.  When this class is instantiated, it will invoke `Prime::calc_nth_prime(N)` where N is the argument provided (N is defaulted to 10).  Instances of the `MultiplicationTable` class will hold values of the multiplication table and a `MultiplicationTable#render` method will be available to STDOUT the table to the console.
 
 ## Gems
+
 * Byebug - preferred debugger
 * RSpec - write test scripts
 * Colorize - beautify the boring console output
@@ -34,20 +35,22 @@ The `MultiplicationTable` class is used to represent the multiplication table.  
 ### Prime
 
 Design
-  + The `Prime` class was created with the idea that its sole purpose is to calculate N prime numbers and provide access to retrieve them.  It also exposes the `::is_prime?` factory method to provide on the spot prime number checking.  When invoking the `::calc_nth_prime` factory method, the prime numbers are cached in a class variable such that subsequent calculations of N prime numbers can be done by leveraging the primes that have already been determined.
+
+  + The `Prime` class was created with the idea that its sole purpose is to calculate N prime numbers and provide access to retrieve them.  It also exposes the `Prime::is_prime?` factory method to provide on the spot prime number checking.  When invoking the `Prime::calc_nth_prime` factory method, the prime numbers are cached in a class variable such that subsequent calculations of N prime numbers can be done by leveraging the primes that have already been determined.
 
 Performance
+
   + **Space complexity is O(N)** because the program caches N prime numbers once they are calculated.  **Time complexity is O(m * sqrt(m))** for completely calculating N prime numbers during the worst case scenario (first time calculation, cache is empty) where m is the Nth prime number.
 
 Reasoning
 
   + N = 10, m = Nth prime number = 29
 
-  + We calculate prime numbers with the factory method `Prime.calc_nth_prime(N)`.  In here, numbers 2 - 29 need to be checked with `Prime.is_prime?(m)` so this brings us to O(m) time complexity.
+  + We calculate prime numbers with the factory method `Prime::calc_nth_prime(N)`.  In here, numbers 2 - 29 need to be checked with `Prime::is_prime?(m)` so this brings us to O(m) time complexity.
 
-  + Within the `Prime.is_prime?(m)` factory method, in the worst case we need to check up to the sqrt(m).  Checking any number after the sqrt is actually a duplication of effort (100 divides evenly by 2 and 50; checking 2 is the same as checking 50).
+  + Within the `Prime::is_prime?(m)` factory method, in the worst case we need to check up to the sqrt(m).  Checking any number after the sqrt is actually a duplication of effort (100 divides evenly by 2 and 50; checking 2 is the same as checking 50).
 
-  + `Prime.calc_nth_prime(N)` and the embedded `Prime.is_prime?(m)` check brings our overall time complexity to O(m * sqrt(m)).
+  + `Prime::calc_nth_prime(N)` and the embedded `Prime::is_prime?(m)` check brings our overall time complexity to O(m * sqrt(m)).
 
 Benchmarking
 
@@ -65,7 +68,11 @@ Benchmarking
 
 Design
 
+  + The `MultiplicationTable` class was created such that a multiplication table can be represented as an object.  When instantiated, it can take an argument N (10 by default) which will determine how many prime numbers get calculated.  Also upon instantiation, the `MultiplicationTable#fill_grid` method is invoked to store values of the table in the `@grid` instance variable.  Lastly, the `MultiplicationTable#render` method STDOUTs the table to the console using several helper methods to build the display strings and a neat little gem called `colorize` to sprinkle in some color.
+
 Performance
+
+  + **Space complexity is O(N^2)** because the `@grid` instance variable will grow in both x and y dimensions as the input N gets larger.  **Time complexity is **
 
 Reasoning
 
@@ -80,3 +87,5 @@ Benchmarking
   ![alt text][mult_table_benchmark_tests]
 
   [mult_table_benchmark_tests]: https://www.github.com/ephraimpei/unite-us-coding-challenge/images/mult_table_benchmark_tests.png
+
+## Thanks and I hope you enjoyed my program and documentation!
