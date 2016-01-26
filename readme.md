@@ -28,7 +28,7 @@ Design
 Performance
   + **Space complexity is O(N)** because the program caches N prime numbers once they are calculated.  **Time complexity is O(m * sqrt(m))** for completely calculating N prime numbers during the worst case scenario (first time calculation, cache is empty) where m is the Nth prime number.
 
-Reasoning:
+Reasoning
 
   + N = 10, m = Nth prime number = 29
 

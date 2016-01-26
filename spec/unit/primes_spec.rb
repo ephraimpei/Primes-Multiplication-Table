@@ -49,7 +49,7 @@ describe Prime do
       test_cases = [0, -5, -10, -100]
 
       test_cases.each_with_index do |n, i|
-        puts "\ttest case #{i + 1}: n = #{n}"
+        puts "\t\ttest case #{i + 1}: n = #{n}"
         expect { Prime.calc_nth_prime(n) }.to raise_error(
           PrimeException, "Can not calculate prime number.")
       end
@@ -83,7 +83,7 @@ describe Prime do
         expected_results = [nil, 2, 29, 541]
 
         test_cases.each_with_index do |n, i|
-          puts "\ttest case #{i + 1}: n = #{n}"
+          puts "\t\ttest case #{i + 1}: n = #{n}"
           expect(Prime.get_cached_prime(n)).to equal(expected_results[i])
         end
       end
@@ -109,7 +109,7 @@ end
 
 def run_is_prime_test_cases(test_cases, condition)
   test_cases.each_with_index do |n, i|
-    puts "\ttest case #{i + 1}: n = #{n}"
+    puts "\t\ttest case #{i + 1}: n = #{n}"
     expect(Prime.is_prime?(n)).to equal(condition)
   end
 end
@@ -118,7 +118,7 @@ def run_calc_nth_prime_test_cases(test_cases, expected_results, caching)
   test_cases.each_with_index do |n, i|
     Prime.reset_cache if not caching
 
-    puts "\ttest case #{i + 1}: n = #{n}"
+    puts "\t\ttest case #{i + 1}: n = #{n}"
     expect(Prime.calc_nth_prime(n)).to equal(expected_results[i])
   end
 end

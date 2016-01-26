@@ -1,10 +1,15 @@
 require_relative "prime"
 
 class MultiplicationTable
+  attr_reader :grid
+  
   def initialize(dimensions = 10)
     Prime.calc_nth_prime(dimensions)
 
     @grid = fill_grid(dimensions)
+  end
+
+  def render
   end
 
   private
