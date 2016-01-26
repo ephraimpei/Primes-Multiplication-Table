@@ -14,7 +14,7 @@ CD into the project directory and run the following command:
 
     $ ./run_program
 
-If you want to determine N yourself, just supply a numerical argument after the command:
+If you want to determine N yourself, just supply an integer argument after the command:
 
     $ ./run_program 20
 
@@ -23,6 +23,8 @@ If you want to determine N yourself, just supply a numerical argument after the 
 I immediately knew that I would need to create classes `Prime` and `MultiplicationTable` to abstract away these two objects.  I also knew that the `Prime` class wouldn't need to be instantiated because storing `Prime` objects wasn't necessary. Therefore, the class only contains factory methods one of which allows you to calculate the Nth prime number.
 
 The `MultiplicationTable` class is used to represent the multiplication table.  When this class is instantiated, it will invoke `Prime::calc_nth_prime(N)` where N is the argument provided (N is defaulted to 10).  Instances of the `MultiplicationTable` class will hold values of the multiplication table and a `MultiplicationTable#render` method will be available to STDOUT the table to the console.
+
+Lastly, I built the run_program script so the program can be run from the command line.  It has some basic error handling to make sure the supplied input is valid otherwise an exception is raised.
 
 ## Gems
 

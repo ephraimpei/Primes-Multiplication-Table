@@ -1,21 +1,36 @@
 require_relative "../lib/mult_table"
 require "benchmark"
 
-test_cases = [100]
+test_cases = [100, 1000, 10000]
 
-puts "MultiplicationTable#initialize (#fill_grid) tests"
-puts "Prime cache is cleared and Prime::calc_nth_prime is run before each test"
+puts "MultiplicationTable#initialize (#fill_grid) tests #1"
+puts "Prime cache is cleared and Prime::calc_nth_prime is run before each test case"
 puts "to ensure we are measuring MultiplicationTable#fill_grid alone"
+puts "\n"
 
-Benchmark.bm(14) do |x|
+Benchmark.bm(12) do |x|
   test_cases.each do |n|
-    # reset set the cache and calc the prime values before running tests
-    # want to measure time of MultiplicationTable#fill_grid not Prime::calc_nth_prime
     Prime.reset_cache
     Prime.calc_nth_prime(n)
 
-    # Prime#calc_nth_prime will still run with each instantiation, but
+    # Prime::calc_nth_prime will still run with each instantiation, but
     # values are already cached so runtime is expected to be instantaneous
+    x.report("n = #{n}") { MultiplicationTable.new(n) }
+  end
+end
+
+puts "MultiplicationTable#initialize (#fill_grid) tests #2"
+puts "Prime cache is cleared before running each test case"
+puts "to ensure we are measuring the total time for"
+puts "MultiplicationTable#fill_grid + Prime::calc_nth_prime"
+puts "\n"
+
+Benchmark.bm(12) do |x|
+  test_cases.each do |n|
+    Prime.reset_cache
+
+    # Prime::calc_nth_prime will run with each instantiation, but this time
+    # nothing is cached so we will get the full runtime.
     x.report("n = #{n}") { MultiplicationTable.new(n) }
   end
 end

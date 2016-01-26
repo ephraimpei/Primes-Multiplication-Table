@@ -20,19 +20,19 @@ puts "\n"
 
 puts "Prime::calc_nth_prime tests"
 
-# These tests absolutely confirm that the big O for this task is O(m * sqrt(m))
-# Each test increased the total CPU time by a factor of 31.62
-# Observe:
-#   test case 1: m = 10000 (increased by factor of 10)
-#     t1 = 10000 * Math.sqrt(10000) = 1000000.0
-#   test case 2: m = 100000 (increased by factor of 10)
-#     t2 = 100000 * Math.sqrt(100000) = 31622776.60
-#   test case 3: m = 1000000 (increased by factor of 10)
-#     t3 = 1000000 * Math.sqrt(1000000) = 1000000000.0
-#   test case 4: m = 1000000 (increased by factor of 10)
-#     t4 = 10000000 * Math.sqrt(10000000) = 31622776601.68
+# These tests confirm that the big O for this task is O(m * sqrt(m))
+# Each test case increased the total CPU time by a factor of about 32
+
+# test case 1: m = 10000
+#   t1 = 10000 * Math.sqrt(10000) = 1000000.0
+# test case 2: m = 100000 (increased by factor of 10)
+#   t2 = 100000 * Math.sqrt(100000) = 31622776.60
+# test case 3: m = 1000000 (increased by factor of 10)
+#   t3 = 1000000 * Math.sqrt(1000000) = 1000000000.0
+# test case 4: m = 10000000 (increased by factor of 10)
+#   t4 = 10000000 * Math.sqrt(10000000) = 31622776601.68
 #
-#   t4 / t3 = t3 / t2 = t2 / t1 = 31.62
+# t4 / t3 = t3 / t2 = t2 / t1 = 31.62
 
 Benchmark.bm(14) do |x|
   calc_nth_prime_test_cases.each do |n|
