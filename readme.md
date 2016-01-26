@@ -68,23 +68,23 @@ Benchmarking
 
   [is_prime_benchmark_tests]: https://github.com/ephraimpei/unite-us-coding-challenge/blob/master/images/is_prime_benchmark_tests.png?raw=true
 
-  + These tests confirm that the big O for `Prime::calc_nth_prime` is O(m * sqrt(m))
+  + These tests *loosely* confirm that the big O for `Prime::calc_nth_prime` is O(m * sqrt(m))
 
-        test case 1: m = 10000
-        t1 = 10000 * Math.sqrt(10000) = 1000000.0
+        test case 1: n = 10000, m = 104729
+        t1 = 104729 * Math.sqrt(104729) = 33892252.64
 
-        test case 2: m = 100000
-        t2 = 100000 * Math.sqrt(100000) = 31622776.60
+        test case 2: n = 100000, m = 1299709
+        t2 = 1299709 * Math.sqrt(1299709) = 1481730393.91
 
-        test case 3: m = 1000000
-        t3 = 1000000 * Math.sqrt(1000000) = 1000000000.0
+        test case 3: n = 1000000, m = 15485863
+        t3 = 15485863 * Math.sqrt(15485863) = 60940093925.69
 
-        test case 4: m = 10000000
-        t4 = 10000000 * Math.sqrt(10000000) = 31622776601.68
+        test case 4: n = 10000000, m = 179424673
+        t4 = 179424673 * Math.sqrt(179424673) = 2403384439866.17
 
-        t4 / t3 = t3 / t2 = t2 / t1 = 31.62
+        t4 / t3 = t3 / t2 = t2 / t1 = approx. 40
 
-    As you can see, in each case the total CPU time is expected to increase by a factor of about 32 which is exactly how the data in the benchmark tests are represented.
+    As you can see, in each case the total CPU time is expected to increase by a factor of about 40. The data from the benchmark tests show that each run is increasing by a factor of about 32.  
 
 ### MultiplicationTable
 
