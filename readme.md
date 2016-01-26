@@ -56,7 +56,7 @@ Reasoning
 
 Benchmarking
 
-  + To see notes about my benchmarking tests, please see the files within the `benchmark` folder.  To run the tests type in the following command at the project root:
+  + To run the benchmark tests for the `Prime` class type in the following command at the project root:
 
         $ ruby benchmark/prime_benchmark_tests.rb
 
@@ -65,6 +65,24 @@ Benchmarking
   ![alt text][is_prime_benchmark_tests]
 
   [is_prime_benchmark_tests]: https://github.com/ephraimpei/unite-us-coding-challenge/blob/master/images/is_prime_benchmark_tests.png?raw=true
+
+  + These tests confirm that the big O for `Prime::calc_nth_prime` is O(m * sqrt(m))
+
+        test case 1: m = 10000
+        t1 = 10000 * Math.sqrt(10000) = 1000000.0
+
+        test case 2: m = 100000
+        t2 = 100000 * Math.sqrt(100000) = 31622776.60
+
+        test case 3: m = 1000000
+        t3 = 1000000 * Math.sqrt(1000000) = 1000000000.0
+
+        test case 4: m = 10000000
+        t4 = 10000000 * Math.sqrt(10000000) = 31622776601.68
+
+        t4 / t3 = t3 / t2 = t2 / t1 = 31.62
+
+    As you can see, in each case the total CPU time is expected to increase by a factor of about 32 which is exactly how the data in the benchmark tests are represented.
 
 ### MultiplicationTable
 
@@ -80,13 +98,21 @@ Performance
 
 Reasoning
 
-  + Without the known expressions optimization, the `MultiplicationTable#fill_grid` is simply a double nested loop which has a time complexity of O(N^2).  All double nested loops share this same time complexity.  I knew this was no good so I attempted to look for a pattern and noticed that known expressions can be stored and retrieved once the algorithm comes to those expressions.  This eliminates almost half of the expressions that need to be searched and evaluated.  However, as mentioned earlier the time complexity of the algorithm is still growing exponentially.
+  + Without the known expressions optimization, the `MultiplicationTable#fill_grid` is simply a double nested loop which has a time complexity of O(N^2).  All double nested loops share this same time complexity.  I knew this was no good so I attempted to look for a pattern and noticed that known expressions can be stored and retrieved once the algorithm comes to those expressions:
+
+  ![alt text][mult_table_pattern_screenshot]
+
+  The cells highlighted in orange are retrieved from the known expressions hash while the cells highlighted in blue are the ones that are actually searched and calculated.
+
+  [mult_table_pattern_screenshot]: https://github.com/ephraimpei/unite-us-coding-challenge/blob/master/images/mult_table_pattern_screenshot.png?raw=true
+
+  + This eliminates almost half of the expressions that need to be searched and evaluated.  However, as mentioned earlier the time complexity of the algorithm is still growing exponentially.
 
   + Despite attempts to optimize the `MultiplicationTable#fill_grid` method, the algorithm still averages out to O(N^2) because the optimization is overshadowed by the exponential at scale. The optimization brings the time complexity to O(N * (N-1)) which factors out to become O(N^2 - N) which becomes O(N^2) at scale.
 
 Benchmarking
 
-  + To see notes about my benchmarking tests, please see the files within the `benchmark` folder.  To run the tests type in the following command at the project root:
+  + To run the benchmark tests for the `MultiplicationTable` class type in the following command at the project root:
 
         $ ruby benchmark/mult_table_benchmark_tests.rb
 
@@ -95,5 +121,7 @@ Benchmarking
   ![alt text][mult_table_benchmark_tests]
 
   [mult_table_benchmark_tests]: https://github.com/ephraimpei/unite-us-coding-challenge/blob/master/images/mult_table_benchmark_tests.png?raw=true
+
+  + You can clearly see that the run times are increasing exponentially after each test case.
 
 ## Thanks and I hope you enjoyed my program and documentation!
