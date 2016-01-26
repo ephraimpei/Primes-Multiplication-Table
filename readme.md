@@ -5,9 +5,14 @@
 This program will display a multiplication table of N prime numbers to the console.
 
 ## Getting Started
+
 CD into the project directory and run the following command:
 
     $ ./run_program
+
+If you want to determine N yourself, just supply a numerical argument after the command:
+
+    $ ./run_program 20
 
 ## Design
 
@@ -37,6 +42,9 @@ Reasoning
   + Within the `Prime.is_prime?(m)` factory method, in the worst case we need to check up to the sqrt(m).  Checking any number after the sqrt is actually a duplication of effort (100 divides evenly by 2 and 50; checking 2 is the same as checking 50).
 
   + `Prime.calc_nth_prime(N)` and the embedded `Prime.is_prime?(m)` check brings our overall time complexity to O(m * sqrt(m)).
+
+  + To see notes about my benchmarking tests, please see the files within the `benchmark` folder.  To run the tests type in the following command at the project root:
+        $ ruby benchmark/prime_benchmark_tests.rb
 
 ### MultiplicationTable
 

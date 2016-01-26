@@ -1,1 +1,21 @@
 #!/usr/bin/env ruby
+
+require_relative "lib/mult_table"
+
+if __FILE__ == $PROGRAM_NAME
+	if ARGV.empty?
+		MultiplicationTable.new.render
+	else
+    # throw an exception if more than one argument is given
+    if ARGV.length > 1
+      raise ArgumentError.new("Can only accept one argument")
+    # throw an exception if input is not an integer
+    elsif
+      Integer(ARGV[0])
+    end
+
+    N = ARGV[0].to_i
+
+    MultiplicationTable.new(N).render
+	end
+end

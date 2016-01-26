@@ -1,3 +1,5 @@
+require 'byebug'
+
 class PrimeException < StandardError
 end
 
