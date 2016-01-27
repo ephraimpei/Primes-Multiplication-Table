@@ -110,7 +110,7 @@ Reasoning
 
   + This eliminates almost half of the expressions that need to be searched and evaluated.  However, as mentioned earlier the time complexity of the algorithm is still growing exponentially.
 
-  + Despite attempts to optimize the `MultiplicationTable#fill_grid` method, the algorithm still averages out to O(N^2) because the optimization is overshadowed by the exponential at scale. The optimization brings the time complexity to O(N * (N-1)) which factors out to become O(N^2 - N) which becomes O(N^2) at scale.
+  + Despite attempts to optimize the `MultiplicationTable#fill_grid` method, the algorithm still averages out to O(N^2) because the optimization is overshadowed by the exponential at scale. The optimization brings the time complexity to O((N^2) / 2) which becomes O(N^2) at scale.
 
 Benchmarking
 
