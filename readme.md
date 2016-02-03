@@ -1,4 +1,4 @@
-# Unite US Coding Challenge
+# Coding Challenge
 
 ## Summary
 
