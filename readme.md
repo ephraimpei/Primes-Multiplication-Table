@@ -125,5 +125,3 @@ Benchmarking
   [mult_table_benchmark_tests]: https://github.com/ephraimpei/unite-us-coding-challenge/blob/master/images/mult_table_benchmark_tests.png?raw=true
 
   + You can clearly see that the run times are increasing exponentially after each test case.
-
-## Thanks and I hope you enjoyed my program and documentation!
