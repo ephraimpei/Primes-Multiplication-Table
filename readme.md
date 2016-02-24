@@ -1,4 +1,4 @@
-# Coding Challenge
+# Primes Multiplication Table
 
 ## Summary
 
